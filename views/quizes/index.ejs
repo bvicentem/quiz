@@ -1,7 +1,12 @@
-<form method ="get" action="/quizes?search=">
- Filtro pregunta:
- <input type="text" name="search" />
- <input type="submit" value="Enviar">
+
+<form method ="get" action="/quizes?search=" >
+ <fieldset>
+  <legend>Opciones</legend>
+  <p><label class="field" for="Texto">Filtrar:</label>
+     <input type="text" name="search" class="textbox-200"/></p>
+  <p><button type="Submit" class="submit">Enviar</button></p>
+  <p><a href="/quizes/new"><button type="button" class="newQuestion"> Crear Pregunta</button></a></p>
+ </fieldset>
 </form>
 
 
@@ -14,5 +19,4 @@
   <% } %>
  </table>
 </div>
-
 
