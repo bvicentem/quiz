@@ -1,32 +1,46 @@
 
-<form method ="get" action="/quizes?search=" >
+<form method ="get" action="/quizes?search=&?tema=" >
  <fieldset>
   <legend>Opciones</legend>
-  <p><label class="field" for="Texto">Filtrar:</label>
-     <input type="text" name="search" class="textbox-200"/></p>
-  <p><button type="Submit" class="submit">Enviar</button></p>
+  <p class="tematica"> Temática
+ 	<select name="tema" >
+ 	  <option value="" selected>Todas</option>
+ 	  <option value="humanidades">Humanidades</option>
+ 	  <option value="ocio">Ocio</option>
+	  <option value="ciencia">Ciencia</option>
+	  <option value="tecnologia">Tecnología</option>
+	  <option value="geografia">Geografía</option>
+	</select>
+  </p>
+
+
+<p><label class="field" for="Texto"></label><input type="text" name="search" placeholder="Buscar" class="textbox-200"/>
+<button type="Submit" class="submit">Enviar</button></p>
+
   <p><a href="/quizes/new"><button type="button" class="newQuestion"> Crear Pregunta</button></a></p>
  </fieldset>
 </form>
 
 
-<div style="text-align:left;">
  <table>
+  <%var aux = "";%>
   <% var i; for(i=0; i< quizes.length; i++) { %>
-  <tr>
-    <td><a href="quizes/<%=quizes[i].id %>"><%=quizes[i].pregunta %></a></td>
-    <td><a href="quizes/<%=quizes[i].id %>/edit">
-        <button> editar </button></a></td>
-    <td>
-        <form method="post" action="quizes/<%= quizes[i].id %>?_method=delete">
-         <button type="submit" 
-            onClick="return confirm('Borrar: <%= quizes[i].pregunta %>');">
-            borrar
-         </button>
-        </form>
-    </td>
-  </tr>
+
+     <% if(aux !== quizes[i].tematica){
+        %><tr><td class="header"><%= quizes[i].tematica%></td></tr>
+        <%}%>
+        <tr>
+           <td><a href="quizes/<%=quizes[i].id %>"><%= quizes[i].pregunta %></a></td>
+           <td class="body"><a href="quizes/<%=quizes[i].id %>/edit"><button>editar</button></a></td>
+           <td class="body">
+              <form method="post" action="quizes/<%= quizes[i].id %>?_method=delete">
+                <button type="submit" onClick="return confirm('Borrar: <%= quizes[i].pregunta %>');">
+                borrar
+                </button>
+              </form>
+           </td>
+        </tr>
+        <% aux = quizes[i].tematica %>
   <% } %>
  </table>
-</div>
 

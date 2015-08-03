@@ -23,7 +23,9 @@ router.put('/quizes/:quizId(\\d+)',	   quizController.update);
 router.delete('/quizes/:quizId(\\d+)',	   quizController.destroy);
 
 // Definicion de ruta de Creditos
-router.get('/author', quizController.author);
+router.get('/author', function(req, res) {
+res.render('author', { title: 'Creditos', errors: [] });
+});
 
 
 module.exports = router;

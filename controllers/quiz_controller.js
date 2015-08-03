@@ -18,22 +18,27 @@ exports.load = function(req, res, next, quizId){
 // y lo guarda en la variable search
 // con la opcion "order:" ordena las preguntas filtradas
 
- exports.index = function(req, res) {
- 
-	var string = req.query.search;
+exports.index = function(req, res){
+	if(req.query.search) { // texto seleccionado
+                var filtro = (req.query.search || '').replace(" ", "%");
+                models.Quiz.findAll({where:["pregunta like ?", '%'+filtro+'%'],order:'pregunta ASC'}).then(function(quizes){
+                res.render('quizes/index', {quizes: quizes, errors: []});
+                }).catch(function(error) { next(error);});
 
-	if(string == null){
-	  models.Quiz.findAll().then(function(quizes) {
- 		res.render('quizes/index.ejs', {quizes: quizes, errors:[]});
-		}).catch(function(error){ next(error);});
-	}else{
-	  string = string.replace(" ","%");
-	  string = "%"+string+"%";
-	  models.Quiz.findAll({where:["pregunta like ?", string], order: 'pregunta ASC'}).then(function(quizes) {
-		res.render('quizes/index.ejs', {quizes: quizes, errors:[]});
-		}).catch(function(error){ next(error);});
- 	}
+	}else {     // tematica seleccionada
 
+          if(req.query.tema) {
+                var filtro = (req.query.tema || '');
+                models.Quiz.findAll({where:["tema like ?", '%'+filtro+'%'],order:'tema ASC'}).then(function(quizes){
+                res.render('quizes/index', {quizes: quizes, errors: []});
+                }).catch(function(error) { next(error);});
+
+	  } else {    // nada seleccionado
+                models.Quiz.findAll().then(function(quizes){
+                res.render('quizes/index', {quizes: quizes, errors: []});
+               }).catch(function(error) { next(error);});
+          }       
+        }
 };
 
 
@@ -63,7 +68,7 @@ exports.answer = function(req,res) {
 // GET /quizes/new
 exports.new = function(req, res){
        var quiz = models.Quiz.build(    //crea objeto quiz
-           {pregunta: "Pregunta", Respuesta: "Respuesta"}
+           {pregunta: "Pregunta", Respuesta: "Respuesta", Tematica: "Tematica"}
            );
        res.render('quizes/new',{quiz: quiz, errors:[]});
 };
@@ -80,7 +85,7 @@ exports.create = function(req, res){
      if(err){
        res.render('quizes/new',{quiz: quiz, errors: err.errors});
     }else{
-       quiz.save({fields: ["pregunta", "respuesta"]}).then(function(){
+       quiz.save({fields: ["pregunta", "respuesta","tematica"]}).then(function(){
        res.redirect('/quizes')})
     }
  });
@@ -98,13 +103,14 @@ exports.edit = function(req, res){
 exports.update = function(req, res){
  req.quiz.pregunta = req.body.quiz.pregunta;
  req.quiz.respuesta = req.body.quiz.respuesta;
+ req.quiz.tematica = req.body.quiz.tematica;
 
  req.quiz.validate().then(
     function(err){
        if(err){
          res.render('quizes/edit', {quiz: req.quiz, erros: err.errors});
        }else{
-         req.quiz.save( {fields: ["preunta", "respuesta"]})
+         req.quiz.save( {fields: ["pregunta", "respuesta", "tematica"]})
          .then( function(){ res.redirect('/quizes');});
        }
    });

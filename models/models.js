@@ -37,10 +37,24 @@ sequelize.sync().then(function() {
 	Quiz.count().then(function(count){
 		if(count === 0){
 		  Quiz.create({ pregunta: 'Capital de Portugal',
-				respuesta: 'Lisboa'
+				respuesta: 'Lisboa',
+                                tematica: 'Geografía'
 			      })
 		  Quiz.create({ pregunta: 'Capital de España',
-				respuesta: 'Madrid'
+				respuesta: 'Madrid',
+                                tematica: 'Geografía'
+			      })
+		  Quiz.create({ pregunta: 'Nombre común de Cloruro Sódico',
+				respuesta: 'Sal',
+                                tematica: 'Ciencia'
+			      })
+		  Quiz.create({ pregunta: 'Descubridor de América',
+				respuesta: 'Colón',
+                                tematica: 'Humanidades'
+			      })
+		  Quiz.create({ pregunta: 'Conexión de dispositivos de forma inalámbrica',
+				respuesta: 'Wifi',
+                                tematica: 'Tecnología'
 			      })
 		.then(function(){console.log('Base de datos Inicializada')});
 		};
