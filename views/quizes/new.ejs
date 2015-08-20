@@ -1,8 +1,19 @@
-<fieldset>
- <legend>Añadir Pregunta</legend>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"><title>Quiz</title>
+		<link rel='stylesheet' href='/stylesheets/style.css' />
+		<link rel="icon" href="favicon.ico" type="image/x-icon" /> 
+	</head>
+	<body>
+		
+		<fieldset>
+			<legend>Añadir Pregunta</legend> 
 
- <form method="post" action="/quizes/create">
-  <% include _form.ejs %>
- </form>
+			<form method="post" action="/quizes/create">
+				<% include _form.ejs %>
+			</form>
+		</fieldset>
 
-</fieldset>
+	</body>
+</html>

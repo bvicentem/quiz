@@ -32,7 +32,7 @@ app.use(session({
     resave: true,           // Forces the session to be saved back to the session store
     rolling: true,          // Forces a cookie to be set on every response. This resets the expiration date
     saveUninitialized: false,   //
-    cookie: { maxAge: 30000}    // Tiempo de la sesion, expiracion de la cookie -> 30000 =1min
+    cookie: { maxAge: 60000}    // Tiempo de la sesion, expiracion de la cookie -> 30000 =1min
     }));
 
 app.use(methodOverride('_method'));

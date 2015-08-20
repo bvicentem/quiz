@@ -1,18 +1,13 @@
 <!DOCTYPE html>
 <html>
   <head>
-   
   </head>
   <body>
 		<h1><%= message %></h1>
 		<%if(error.status != 1001){%>
 			<h2><%= error.status %></h2>
 			<pre><%= error.stack %></pre>
-
 		<%}%>
-		<script>setTimeout(function(){window.location.href='/'}, 3000);</script>
+		<script>setTimeout(function(){window.location.href='/'}, 150000);</script>   
   </body>
-
-    
-
 </html>

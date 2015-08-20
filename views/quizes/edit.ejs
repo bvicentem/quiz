@@ -1,7 +1,21 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"><title>Quiz</title>
+		<link rel='stylesheet' href='/stylesheets/style.css' />
+		<link rel="icon" href="favicon.ico" type="image/x-icon" /> 
+	</head>
+	<body>
+		
 
-<form method="post" action="/quizes/<%= quiz.id %>?_method=put">
- <fieldset>
-   <legend>Edite la pregunta</legend>
-   <% include _form.ejs %>
- </fieldset>
-</form>
+				<form method="post" action="/quizes/<%= quiz.id %>?_method=put">
+					<fieldset>
+						<legend>Edite la pregunta</legend>
+						<% include _form.ejs %>
+					</fieldset>
+				</form>
+
+		
+
+	</body>
+</html> 

@@ -1,53 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"><title>Quiz</title>
+		<link rel='stylesheet' href='/stylesheets/style.css' />
+		<link rel="icon" href="favicon.ico" type="image/x-icon" /> 
+	</head>
+	<body>
+		<form method ="get" action="/quizes?search=&?tema=" >
+			<fieldset>
+				<legend>Opciones</legend>
+				<p class="tematica">
+					Temática
+					<select name="tema" >
+  						<option value="" selected>Todas</option>
+					  	<option value="humanidades">Humanidades</option>
+					  	<option value="ocio">Ocio</option>
+					  	<option value="ciencia">Ciencia</option>
+					  	<option value="tecnología">Tecnología</option>
+					  	<option value="geografía">Geografía</option>
+					</select>
+				</p>
+				<p><label class="field" for="Texto"></label><input type="text" name="search" placeholder="Buscar" class="textbox-200"/>
+				<button type="Submit" class="submit">Enviar</button></p>
+				<%if(session.user){%>
+					<p><a href="/quizes/new"><button type="button" class="newQuestion"> Crear Pregunta</button></a></p>
+				<%}%>
+				
+			</fieldset>
+		</form>
 
-<form method ="get" action="/quizes?search=&?tema=" >
- <fieldset>
-  <legend>Opciones</legend>
-  <p class="tematica"> Temática
- 	<select name="tema" >
- 	  <option value="" selected>Todas</option>
- 	  <option value="humanidades">Humanidades</option>
- 	  <option value="ocio">Ocio</option>
-	  <option value="ciencia">Ciencia</option>
-	  <option value="tecnologia">Tecnología</option>
-	  <option value="geografia">Geografía</option>
-	</select>
-  </p>
+		<table>
+			<%var aux = "";%>
+			<% var i; for(i=0; i< quizes.length; i++) { %>
+				<% if(aux !== quizes[i].tematica){
+					%><tr><td class="header"><%= quizes[i].tematica%></td></tr>
+					<%}%>
+							<tr >
+								<td><a href="quizes/<%=quizes[i].id %>"><%= quizes[i].pregunta %></a></td>
+								<%if(session.user){%>
+								<td class="body"><a href="quizes/<%=quizes[i].id %>/edit"><button>editar</button></a></td>
+								<td class="body">
+									<form method="post" action="quizes/<%= quizes[i].id %>?_method=delete">
+										<button type="submit" onClick="return confirm('Borrar: <%= quizes[i].pregunta %>');">
+											borrar
+										</button>
+									</form>
+								</td>
+								<%}%>
+							</tr>
+					
+					<% aux = quizes[i].tematica %>
+			<%}%>
 
+		</table>
 
-<p><label class="field" for="Texto"></label><input type="text" name="search" placeholder="Buscar" class="textbox-200"/>
-<button type="Submit" class="submit">Enviar</button></p>
-
-  <p><a href="/quizes/new"><button type="button" class="newQuestion"> Crear Pregunta</button></a></p>
- </fieldset>
-</form>
-
-
- <table>
-  <%var aux = "";%>
-  <% var i; for(i=0; i< quizes.length; i++) { %>
-
-     <% if(aux !== quizes[i].tematica){
-        %><tr><td class="header"><%= quizes[i].tematica%></td></tr>
-        <%}%>
-        <tr>
-           <td><a href="quizes/<%=quizes[i].id %>"><%= quizes[i].pregunta %></a></td>
-
-           <% if(session.user){%> 
-           <td class="body"><a href="quizes/<%=quizes[i].id %>/edit"><button>editar</button></a></td>
-           <td class="body">
-              <form method="post" action="quizes/<%= quizes[i].id %>?_method=delete">
-                <button type="submit" onClick="return confirm('Borrar: <%= quizes[i].pregunta %>');">
-                borrar
-                </button>
-              </form>
-           </td>
-           <%} %>
-
-        </tr>
-        <% aux = quizes[i].tematica %>
-  <% } %>
- </table>
-
-<% if (session.user){%> 
-  <a href="/quizes/new"><button>Crear pregunta</button></a>
-<%} %>
+	</body>
+</html>

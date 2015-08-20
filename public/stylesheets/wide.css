@@ -1,28 +1,43 @@
-body { background: #999; }
 
-#page-wrap:after { content: "Wide Layout"; }
+body 					{ background: #999; }
 
-nav       { float: left; width: 15%; height: auto ;}
-nav span  { margin: 0px 1000px 0px 0px;}
-section   { float: right; width: 80%; height: 100% ;}
-footer    { clear: both;  display: block; }
 
-fieldset { width: 400px;  padding-top:10px; padding-bottom: 10px}
+#page-wrap				{ width: 80%}
+#page-wrap:after		{ content: "Wide Layout"}
+#user					{ text-align: right}
 
-label.field { text-align: right; width: 15%;
-              float: left;}
+nav 					{ float: left; width: 15%; height: auto }
+nav span 				{ margin: 0px 1000px 0px 0px;}
+section 				{ float: right; width: 80%; height: 100%;}
+footer					{ clear: both; display: block;}
+fieldset 				{ width: 400px;
+						  padding-top: 10px;
+						  padding-bottom: 10px}
 
-input.textbox-200 { width: 200px; float: left;}
+label.field 			{ text-align: right;
+						  width: 15%;
+						  float: left;}
 
-fieldset p { clear: both; padding: 5px;}
 
-button.submit	{float: right;}
-button.newQuestion	{float: left;}
 
-table	{ padding-top: 30px; text-align: left;}
+input.textbox-200		{ width: 200px;
+						  float: left;}
 
-p.tematica	{ float: left;}
+fieldset p 				{ clear: both;
+						  padding: 5px;}
 
-td.header	{ width: 75%; border: 1px solid black;}
+button.submit			{float: right;}
+button.newQuestion		{float: left;}
 
-td.body		{ float: left;}
+table					{ padding-top: 30px;
+						  text-align: left;}
+
+
+
+
+p.tematica				{ float: left;}	
+
+td.header				{ width: 50%; border: 1px solid black;}
+
+td.body					{ float: left;}
+

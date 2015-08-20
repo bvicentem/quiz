@@ -1,8 +1,21 @@
-Añadir comentario: <p>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8"><title>Quiz</title>
+		<link rel='stylesheet' href='/stylesheets/style.css' />
+		<link rel="icon" href="favicon.ico" type="image/x-icon" /> 
+	</head>
+	<body>
+		Añadir comentario a pregunta <%=quizid%>: <p>
+		
+		<form method="post" action="/quizes/<%=quizid%>/comments/">
+			<input type="text" id="comment" name="comment[texto]" value="Nuevo Comentario"/><p>
+			<label for="author">Autor</label><br/>
+			<input type="text" id="Autor" name="comment[author]" 
+			value="<%if(session.user){%><%=session.user.username%><%}
+			else{%><%='anónimo'%><%}%>"/><p>
+			<button type="submit">Enviar</button>
+		</form>
 
-<form method="post" action="/quizes/<%=quizid%>/comments/" >
- <input type="text" id="comment" name="comment[texto]" value=""/> <p>
- <button type="submit">Enviar</button>
-</form> 
-
-
+	</body>
+</html>

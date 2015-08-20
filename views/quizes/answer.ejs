@@ -1,8 +1,20 @@
-<h4> Resultado: </h4>
-     <p><h2><%= respuesta %></h2></p>
-     <% if( respuesta === 'Correcto'){%>
-          <a href="/quizes">Volver al listado de Preguntas</a>
-     <%}else{%>
-          <a href="/quizes/<%= quiz.id %>"> Reintentar</a>
-     <%}%>
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>Quiz</title>
+		<link rel='stylesheet' href='/stylesheets/style.css' />
+		<link rel="icon" href="favicon.ico" type="image/x-icon" /> 
+	</head>
+	<body>
+		<h4> Resultado: </h4>
+			<p><h2><%= respuesta %></h2></p>
 
+			<% if( respuesta === 'Correcto'){%>
+				<a href="/quizes">Volver al listado de Preguntas</a>
+			<%}else{%>
+				<a href="/quizes/<%= quiz.id %>"> Reintentar</a>
+			<%}%>
+		
+	</body>
+</html>

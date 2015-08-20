@@ -1,29 +1,37 @@
-body             	{ background: #333; }
+body 	{ background: #333;}
 
-#page-wrap:after 	{ content: "Smartphone Layout"; }
+#page-wrap:after { content: "Smartphone Layout";}
 
-h2 span, section h3  	{ display: none; }
+h2 span, section h3 {display: none;}
+body 				{font-size: smaller;}
+footer, input		{font-size: large;}
+nav  			{ 	margin: auto;
+    					width: 80%;
+   						padding: 10px;
+   					}
 
-body {font-size: smaller;}
-footer, input	{font-size: large;}
-nav { margin: auto; width: 80%; padding: 10px; }
+fieldset 				{ width: 100%;
+						  padding-bottom: 10px}
 
-fieldset { width: 100%; padding-bottom: 10px}
+label.field 			{ text-align: right;
+						  width: 20%;
+						  float: left;
+						  font-weight: bold;}
 
-label.field { text-align: right; width: 20%;
- float: left; font-weight: bold;}
+input.textbox-200		{ width: 60%;
+						  float: left;}
 
-input.textbox-200	{ width: 60%; float: left;}
+fieldset p 				{ clear: both;
+						  padding: 5px;}
 
-fieldset p { clear: both; padding: 5px;}
+button.submit			{float: right;}
+button.newQuestion		{float: left;}
 
-button.submit	{float: right;}
-button.newQuestion	{float: left;}
+table					{ padding-top: 30px;
+						  text-align: left;}
 
-table	{ padding-top: 30px; text-align: left;}
+p.tematica				{ float: left;}	
 
-p.tematica	{ float: left;}
+td.header				{ width: 50%; border: 1px solid black;}
 
-td.header	{ width: 50%; border: 1px solid black;}
-
-td.body	{ float: left;}
+td.body					{ float: left;}

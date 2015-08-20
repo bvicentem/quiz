@@ -1,31 +1,68 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8">
-    <title>Quiz</title>
-    <link rel='stylesheet' href='/stylesheets/style.css' />
-    <link rel="icon" href="favicon.ico" type="image/x-icon" /> 
-  </head>
-  <body>
-    <form method="get" action="/quizes/<%= quiz.id %>/answer">
-      Pregunta:<p><h1> <%=quiz.pregunta%></h1><p>
-      <input type="text" name="respuesta" placeholder="Respuesta"/>
-      <input type="submit" value="Enviar">
-    </form>
+	<head>
+		<meta charset="utf-8">
+		<title>Quiz</title>
+		<link rel='stylesheet' href='/stylesheets/style.css' />
+		<link rel="icon" href="favicon.ico" type="image/x-icon" /> 
+	</head>
+	<body>
+		<form method="get" action="/quizes/<%= quiz.id %>/answer">
+			Pregunta:<p><h1> <%=quiz.pregunta%></h1><p>
+			<input type="text" name="respuesta" placeholder="Respuesta"/>
+			<input type="submit" value="Enviar">
+		</form>
 
-    <p><a href="/quizes/<%= quiz.id %>/comments/new"><button>Nuevo Comentario</button></a></p>
+	<table>
+		<tr><td>
+			<p><strong>Comentarios:</strong></p>
+		</td></tr>		
+				<%for(index in quiz.Comments){%>
+				<tr>
+					
+					<td>
+						<%if(quiz.Comments[index].publicado || session.user){%>
+						<p>-<b> <%=quiz.Comments[index].texto%></b> Autor: <%=quiz.Comments[index].autor%>
+					</td>	
+					<td>		
+						<%if(session.user){%>
+							<form method="post" action="/quizes/<%= quiz.id %>/comments/<%=quiz.Comments[index].id%>?_method=delete">
+								<button type="submit" onClick="return confirm('Borrar Comentario');">
+								borrar
+								</button>
+						</form>
+						<%}%>
+					</td>
+					<td>
+						<%if(session.user && !quiz.Comments[index].publicado){%>
+							<a href="/quizes/<%= quiz.id %>/comments/<%=quiz.Comments[index].id%>/publish">
+								<button>Publicar</button></a>
+						<%}%>
+					</td>
+					</p>
+				</tr>	
+				<%}
+			}%>
 
-    <p><strong>Comentarios:</strong></p>
-    <%for(index in quiz.Comments){%>
-      <%if(quiz.Comments[index].publicado || session.user){%>
-        <p>- <%=quiz.Comments[index].texto%>
-        <%if(session.user && !quiz.Comments[index].publicado){%>
-          <a href="/quizes/<%= quiz.id %>/comments/<%=quiz.Comments[index].id%>/publish">
-            <button>Publicar</button></a>
-        <%}%>
-        </p>
-      <%}
-    }%>
+		<tr><td>
+			<p><a href="/quizes/<%= quiz.id %>/comments/new"><button>Nuevo Comentario</button></a></p>
+		</td></tr>
+		
+	</table>
 
-  </body>
+	</body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
